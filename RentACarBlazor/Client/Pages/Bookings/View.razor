@@ -1,0 +1,103 @@
+﻿@page "/bookings/view/{id:int}"
+@using System.Text.Json
+@using System.Text
+
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+
+<h3 class="card-title">Booking Details</h3>
+<hr/>
+<br/>
+
+<EditForm Model="@booking">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <fieldset disabled>
+     <div class="form-group">
+        <label>Vehicle: </label>
+        <div>
+           <InputSelect @bind-Value="booking.VehicleId" class="form-control">
+            <option value="">-- Select Vehicle --</option>
+                @if(Vehicles != null)
+                {
+                    foreach (var vehicle in Vehicles)
+                    {
+                        <option value="@vehicle.Id">@vehicle.Make.Name @vehicle.Model.Name | @vehicle.LicensePlateNumber</option>
+                    }
+                }
+           </InputSelect>
+           <ValidationMessage For="@(() => @booking.VehicleId)"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Vehicle: </label>
+        <div>
+           <InputSelect @bind-Value="booking.CustomerId" class="form-control">
+            <option value="">-- Select Customer --</option>
+                @if(Customers != null)
+                {
+                    foreach (var customer in Customers)
+                    {
+                        <option value="@customer.Id">@customer.TaxId | @customer.EmailAddress</option>
+                    }
+                }
+           </InputSelect>
+           <ValidationMessage For="@(() => @booking.CustomerId)"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Date Out: </label>
+        <div>
+           <InputDate @bind-Value="booking.DateOut" class="form-control"/>
+           <ValidationMessage For="@(() => booking.DateOut)"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Date In: </label>
+        <div>
+           <InputDate @bind-Value="booking.DateIn" class="form-control"/>
+           <ValidationMessage For="@(() => booking.DateIn)"/>
+        </div>
+    </div>
+   </fieldset>
+    
+    <button class="btn btn-outline-dark btn-block" @onclick="NavigateToList">
+        <span class="oi oi-arrow-left"></span>
+        Back To list
+    </button>
+</EditForm>
+
+@code {
+    Booking booking = new Booking()
+        {
+            DateOut = DateTime.Now.Date
+        };
+
+    private IList<Vehicle> Vehicles;
+    private IList<Customer> Customers;
+
+    [Parameter] public int id { get; set; }
+
+
+    protected async override Task OnParametersSetAsync()
+    {
+        booking = await Http.GetFromJsonAsync<Booking>($"api/bookings/{id}");
+
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Vehicles = await Http.GetFromJsonAsync<List<Vehicle>>("api/vehicles");
+        Customers = await Http.GetFromJsonAsync<List<Customer>>("api/customers");
+    }
+
+
+    void NavigateToList()
+    {
+        NavManager.NavigateTo("/bookings/");
+    }
+}
+    

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,11 @@ namespace RentACarBlazor.Shared.Domain
         public int Year { get; set; }
         [Required]
         public int ModelId { get; set; }
-        public virtual Model Model { get; set; }
+        public virtual Model? Model { get; set; }
         [Required]
         public int MakeId { get; set; }
-        public virtual Make Make { get; set; }
-        public virtual Colour Colour { get; set; }
+        public virtual Make? Make { get; set; }
+        public virtual Colour? Colour { get; set; }
         [Required]
         public int ColourId { get; set; }
         [Required]
@@ -29,9 +30,10 @@ namespace RentACarBlazor.Shared.Domain
         [Required]
         [DataType(DataType.Currency)]
         public double RentalRate { get; set; }
-        public virtual List<Booking> Bookings { get; set; }
-        
-        public byte[] Image { get; set; }
-        public string ImageName { get; set; }
+        public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
+        [NotMapped]
+        public byte[]? Image { get; set; }
+        public string? ImageName { get; set; }
+
     }
 }

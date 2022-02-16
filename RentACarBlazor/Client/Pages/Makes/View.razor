@@ -1,0 +1,54 @@
+﻿@page "/makes/view/{id:int}"
+@using System.Text.Json
+@using System.Text
+
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+
+<h3 class="card-title">@make.Name Details</h3>
+<hr/>
+<br/>
+
+<EditForm Model="@make">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <fieldset disabled>
+   <div class="form-group">
+        <label>Name: </label>
+        <div>
+           <InputText @bind-Value="make.Name" class="form-control"/>
+           <ValidationMessage For="@(() => make.Name)"/>
+        </div>
+    </div>
+    </fieldset>
+
+    <button class="btn btn-outline-dark btn-block" @onclick="NavigateToList">
+        <span class="oi oi-arrow-left"></span>
+        Back To list
+    </button>
+
+</EditForm>
+
+@code {
+    [Parameter] public int id { get; set; }
+
+    Make make = new Make();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        make = await Http.GetFromJsonAsync<Make>($"api/makes/{id}");
+
+    }
+
+
+    void NavigateToList()
+    {
+        NavManager.NavigateTo("/makes/");
+    }
+}
+    
+
+
+
+

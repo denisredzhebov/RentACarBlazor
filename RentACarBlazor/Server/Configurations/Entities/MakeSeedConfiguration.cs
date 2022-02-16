@@ -1,6 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using RentACarBlazor.Shared.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RentACarBlazor.Shared.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RentACarBlazor.Server.Configurations.Entities
 {
@@ -12,23 +16,15 @@ namespace RentACarBlazor.Server.Configurations.Entities
                 new Make
                 {
                     Id = 1,
-                    CreatedBy = "System",
-                    DateCreated = DateTime.Now,
-                    DateUpdated = DateTime.Now,
-                    Name = "Toyota",
-                    UpdatedBy = "System"
+                    Name = "Toyota"
+                    
                 },
                 new Make
                 {
                     Id = 2,
-                    CreatedBy = "System",
-                    DateCreated = DateTime.Now,
-                    DateUpdated = DateTime.Now,
-                    Name = "BMW",
-                    UpdatedBy = "System"
+                    Name = "BMW"
                 }
             );
         }
-
     }
 }

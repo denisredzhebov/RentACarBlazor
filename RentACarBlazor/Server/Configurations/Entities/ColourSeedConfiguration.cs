@@ -1,6 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using RentACarBlazor.Shared.Domain;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RentACarBlazor.Shared.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RentACarBlazor.Server.Configurations.Entities
 {
@@ -12,22 +16,14 @@ namespace RentACarBlazor.Server.Configurations.Entities
                 new Colour
                 {
                     Id = 1,
-                    CreatedBy = "System",
-                    DateCreated = DateTime.Now,
-                    DateUpdated = DateTime.Now,
-                    Name = "Black",
-                    UpdatedBy = "System"
+                    Name = "Black"
                 },
                 new Colour
                 {
                     Id = 2,
-                    CreatedBy = "System",
-                    DateCreated = DateTime.Now,
-                    DateUpdated = DateTime.Now,
-                    Name = "Blue",
-                    UpdatedBy = "System"
+                    Name = "Blue"
+                    
                 }
-
             );
         }
     }

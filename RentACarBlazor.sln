@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentACarBlazor.Server", "RentACarBlazor\Server\RentACarBlazor.Server.csproj", "{E4727B2E-266E-41DD-84DF-08443C5786E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentACarBlazor.Server", "RentACarBlazor\Server\RentACarBlazor.Server.csproj", "{E4727B2E-266E-41DD-84DF-08443C5786E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentACarBlazor.Client", "RentACarBlazor\Client\RentACarBlazor.Client.csproj", "{72EA8189-BB13-4435-B334-FAA55E8EB690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentACarBlazor.Client", "RentACarBlazor\Client\RentACarBlazor.Client.csproj", "{72EA8189-BB13-4435-B334-FAA55E8EB690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentACarBlazor.Shared", "RentACarBlazor\Shared\RentACarBlazor.Shared.csproj", "{90B38B44-D20E-44B8-86A3-F52EFD13C886}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentACarBlazor.Shared", "RentACarBlazor\Shared\RentACarBlazor.Shared.csproj", "{90B38B44-D20E-44B8-86A3-F52EFD13C886}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

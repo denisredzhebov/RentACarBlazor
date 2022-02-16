@@ -193,14 +193,14 @@ namespace RentACarBlazor.Server.Data.Migrations
                         new
                         {
                             Id = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                            ConcurrencyStamp = "f584ee02-6783-4560-af91-83f3aba39a4e",
+                            ConcurrencyStamp = "72796aec-ccdf-44ca-837b-98c566855c4a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                            ConcurrencyStamp = "05b588d7-5c2b-43f2-8200-ab376318da4b",
+                            ConcurrencyStamp = "f52f07b2-7c4d-43c0-903c-50f738932551",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -297,12 +297,12 @@ namespace RentACarBlazor.Server.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "8e45865-a24d-4543-a6c6-9443d048cdb9",
+                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             RoleId = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf"
                         },
                         new
                         {
-                            UserId = "9e24968-33e4-4652-b7b7-8574d048cdb9",
+                            UserId = "9e224968-33e4-4652-b7b7-8574d048cdb9",
                             RoleId = "cac43a6e-f7bb-4448-baaf-1add431ccbbf"
                         });
                 });
@@ -403,9 +403,9 @@ namespace RentACarBlazor.Server.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8e45865-a24d-4543-a6c6-9443d048cdb9",
+                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1344ac65-6f60-4231-bc6e-31eca3de9ac9",
+                            ConcurrencyStamp = "794bdf22-720e-49d1-92ab-e208299ed27c",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "System",
@@ -413,17 +413,17 @@ namespace RentACarBlazor.Server.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELegTLk7oiJxwUakzJZfC4yKTJSbREc2eyoqVNO4TaOew/j4GG7thI3LvJjL9u6T8g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIiVGUaLoz1H+b0aHCF/8+3wYUzbbn6v47SvNVo70sVvqcZ3QV/CRV3lCStaOXDFZw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "877086af-7245-4c73-a702-d4e6e415c80e",
+                            SecurityStamp = "821acdcd-8c4b-4196-b76b-bf39077bb193",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
                         new
                         {
-                            Id = "9e24968-33e4-4652-b7b7-8574d048cdb9",
+                            Id = "9e224968-33e4-4652-b7b7-8574d048cdb9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "04ecf921-d853-472e-a197-1a58a59e7fa1",
+                            ConcurrencyStamp = "9f123de2-eb04-49bf-9166-ce56087dcb83",
                             Email = "user@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "System",
@@ -431,9 +431,9 @@ namespace RentACarBlazor.Server.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELVeLk2KC+Io14iJhhdOrWu3DM4OaJFt6Ew2QSp/jgZuCp2xQ5U+rLPQWgupH+Jriw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMyyPpNKAIwr+fcjQBaeY2YAOAgWTAh4ztd5aqMmmPPrut/d9uLkc/NlXdZOWCE9dA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e42641b6-498f-400c-9b84-addda7916514",
+                            SecurityStamp = "c85345a3-3499-4152-88c7-4b40d834d16f",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         });
@@ -447,28 +447,14 @@ namespace RentACarBlazor.Server.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateIn")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOut")
                         .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VehicleId")
                         .HasColumnType("int");
@@ -490,21 +476,7 @@ namespace RentACarBlazor.Server.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -516,20 +488,12 @@ namespace RentACarBlazor.Server.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1061),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1093),
-                            Name = "Black",
-                            UpdatedBy = "System"
+                            Name = "Black"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1098),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1100),
-                            Name = "Blue",
-                            UpdatedBy = "System"
+                            Name = "Blue"
                         });
                 });
 
@@ -548,16 +512,6 @@ namespace RentACarBlazor.Server.Data.Migrations
                     b.Property<string>("ContactNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
@@ -578,10 +532,6 @@ namespace RentACarBlazor.Server.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
@@ -595,21 +545,7 @@ namespace RentACarBlazor.Server.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -621,20 +557,12 @@ namespace RentACarBlazor.Server.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1292),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1296),
-                            Name = "Toyota",
-                            UpdatedBy = "System"
+                            Name = "Toyota"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1299),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1301),
-                            Name = "BMW",
-                            UpdatedBy = "System"
+                            Name = "BMW"
                         });
                 });
 
@@ -646,21 +574,7 @@ namespace RentACarBlazor.Server.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -672,38 +586,22 @@ namespace RentACarBlazor.Server.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1377),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1380),
-                            Name = "Prius",
-                            UpdatedBy = "System"
+                            Name = "Prius"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1383),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1385),
-                            Name = "Vitz",
-                            UpdatedBy = "System"
+                            Name = "Vitz"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1387),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1388),
-                            Name = "3 Series",
-                            UpdatedBy = "System"
+                            Name = "3 Series"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1390),
-                            DateUpdated = new DateTime(2022, 1, 31, 19, 24, 10, 91, DateTimeKind.Local).AddTicks(1392),
-                            Name = "X5",
-                            UpdatedBy = "System"
+                            Name = "X5"
                         });
                 });
 
@@ -718,22 +616,7 @@ namespace RentACarBlazor.Server.Data.Migrations
                     b.Property<int>("ColourId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("Image")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("ImageName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LicensePlateNumber")
@@ -749,10 +632,6 @@ namespace RentACarBlazor.Server.Data.Migrations
 
                     b.Property<double>("RentalRate")
                         .HasColumnType("float");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Vin")
                         .IsRequired()

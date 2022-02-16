@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RentACarBlazor.Shared.Domain
 {
@@ -7,7 +8,7 @@ namespace RentACarBlazor.Shared.Domain
         [Required]
         [StringLength(100, MinimumLength = 2)]
         public string FirstName { get; set; }
-
+        
         [Required]
         [StringLength(100, MinimumLength = 2)]
         public string LastName { get; set; }
@@ -26,6 +27,6 @@ namespace RentACarBlazor.Shared.Domain
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
         public string EmailAddress { get; set; }
-        public virtual List<Booking> Bookings { get; set; }
+        public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

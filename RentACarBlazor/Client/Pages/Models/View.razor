@@ -1,0 +1,55 @@
+﻿@page "/models/view/{id:int}"
+@using System.Text.Json
+@using System.Text
+
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+
+<h3 class="card-title">@model.Name Details</h3>
+<hr/>
+<br/>
+
+<EditForm Model="@model">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <fieldset disabled>
+   <div class="form-group">
+        <label>Name: </label>
+        <div>
+           <InputText @bind-Value="model.Name" class="form-control"/>
+           <ValidationMessage For="@(() => model.Name)"/>
+        </div>
+    </div>
+    </fieldset>
+
+    <button class="btn btn-outline-dark btn-block" @onclick="NavigateToList">
+        <span class="oi oi-arrow-left"></span>
+        Back To list
+    </button>
+
+</EditForm>
+
+@code {
+    [Parameter] public int id { get; set; }
+
+    Model model = new Model();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        model = await Http.GetFromJsonAsync<Model>($"api/models/{id}");
+
+    }
+
+
+    void NavigateToList()
+    {
+        NavManager.NavigateTo("/models/");
+    }
+}
+    
+
+
+
+
+

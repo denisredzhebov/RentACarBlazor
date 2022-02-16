@@ -1,0 +1,60 @@
+﻿@page "/colours/edit/{id:int}"
+@using System.Text.Json
+@using System.Text
+
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+
+<h3 class="card-title">Update Colour</h3>
+<hr/>
+<br/>
+
+<EditForm Model="@colour" OnValidSubmit="UpdateColour">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+   <div class="form-group">
+        <label>Name: </label>
+        <div>
+           <InputText @bind-Value="colour.Name" class="form-control"/>
+           <ValidationMessage For="@(() => colour.Name)"/>
+        </div>
+    </div>
+  
+    <button type="submit" class="btn btn-success btn-block">
+        Update
+    </button>
+
+    <button class="btn btn-outline-dark btn-block" @onclick="NavigateToList">
+        <span class="oi oi-arrow-left"></span>
+        Back To list
+    </button>
+</EditForm>
+
+@code {
+    [Parameter] public int id { get; set; }
+
+    Colour colour = new Colour();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        colour = await Http.GetFromJsonAsync<Colour>($"api/colours/{id}");
+
+    }
+
+    private async Task UpdateColour()
+    {
+        await Http.PutAsJsonAsync($"api/colours/{id}", colour);
+        NavManager.NavigateTo("/colours/");
+     
+    }
+
+    void NavigateToList()
+    {
+        NavManager.NavigateTo("/colours/");
+    }
+}
+    
+
+

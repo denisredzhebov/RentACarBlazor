@@ -1,0 +1,81 @@
+﻿@page "/vehicles/"
+@inject IJSRuntime js
+
+@inject HttpClient Http
+@attribute [Authorize]
+
+<h3 class="card-title">Vehicles</h3>
+<hr/>
+<br/>
+
+<a href="/vehicles/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Vehicle    
+</a>
+<br/>
+<br/>
+
+@if(Vehicles == null)
+{
+    <div class="alert alert-info">Loading Models..</div>
+} 
+else
+{
+    <table class="table table-table-responsive">
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Daily Rate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Vehicles)
+           {
+               <tr>
+                   <td>@item.Make.Name</td>
+                   <td>@item.Model.Name</td>
+                   <td>@item.Year</td>
+                   <td>@item.RentalRate</td>
+        
+                   <td>
+                       <a href="/vehicles/view/@item.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                       </a>
+                       <a href="/vehicles/edit/@item.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                       </a>
+                       <button class="btn btn-danger" @onclick="@(()=>Delete(item.Id))">
+                            <span class="oi oi-delete"></span>
+                       </button>
+                   </td>
+               </tr>
+           }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Vehicle> Vehicles;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Vehicles = await Http.GetFromJsonAsync<List<Vehicle>>("api/vehicles");
+    }
+
+    async Task Delete(int vehicleId)
+    {
+        var vehicle = Vehicles.First(q => q.Id == vehicleId);
+
+
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {vehicle.Make.Name}?");
+        if(confirm)
+        {
+            await Http.DeleteAsync($"api/vehicles/{vehicleId}");
+            await OnInitializedAsync();
+        }
+
+    }
+}

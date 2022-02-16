@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using RentACarBlazor.Server.Data;
 using RentACarBlazor.Server.Models;
 using Microsoft.AspNetCore.Identity;
+using RentACarBlazor.Server.IRepository;
+using RentACarBlazor.Server.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +24,10 @@ builder.Services.AddIdentityServer()
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(
+    o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

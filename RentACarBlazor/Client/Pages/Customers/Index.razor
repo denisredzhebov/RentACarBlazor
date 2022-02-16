@@ -1,0 +1,80 @@
+﻿@page "/customers/"
+@inject IJSRuntime js
+
+@inject HttpClient Http
+@attribute [Authorize]
+
+<h3 class="card-title">Customers</h3>
+<hr/>
+<br/>
+
+<a href="/customers/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Customer    
+</a>
+<br/>
+<br/>
+
+@if(Customers == null)
+{
+    <div class="alert alert-info">Loading Customers..</div>
+} 
+else
+{
+    <table class="table table-table-responsive">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Contact Number</th>
+                <th>Email Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Customers)
+           {
+               <tr>
+                   <td>@item.FirstName @item.LastName</td>
+                   <td>@item.ContactNumber</td>
+                   <td>@item.EmailAddress</td>
+                   <td>
+                       <a href="/customers/view/@item.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                       </a>
+                       <a href="/customers/edit/@item.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                       </a>
+                       <button class="btn btn-danger" @onclick="@(()=>Delete(item.Id))">
+                            <span class="oi oi-delete"></span>
+                       </button>
+                   </td>
+               </tr>
+           }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Customer> Customers;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Customers = await Http.GetFromJsonAsync<List<Customer>>("api/customers");
+    }
+
+    async Task Delete(int customerId)
+    {
+        var customer = Customers.First(q => q.Id == customerId);
+
+
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {customer.TaxId}?");
+        if(confirm)
+        {
+            await Http.DeleteAsync($"api/customers/{customerId}");
+            await OnInitializedAsync();
+        }
+
+        
+    }
+}
+
